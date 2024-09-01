@@ -16,7 +16,7 @@ class Guest(Thread):
         self.name = name
 
     def run(self):
-        random_number = random.randint(3, 10)
+        random_number = random.randint(1, 3)
         time.sleep(random_number)
 
 
@@ -44,6 +44,8 @@ class Cafe:
                     self.q.put(guest)
                     wait_list.append(guest)
                     print(f'{guest.name} в очереди')
+                    random_number = random.randint(5, 8)
+                    time.sleep(random_number)
 
     def guests_service(self):
         dismiss_list = []
@@ -54,6 +56,8 @@ class Cafe:
                         print(f'{table.guest.name} поел(-а) и ушёл(ушла). \nСтол {table.num} свободен')
                         dismiss_list.append(table.guest)
                         table.guest = None
+                        random_number = random.randint(4, 6)
+                        time.sleep(random_number)
                 elif table.guest is None:
                     guest = self.q.get()
                     if guest not in dismiss_list:
