@@ -49,11 +49,12 @@ class Cafe:
                     table.guest = None
                     random_number = random.randint(2, 4)
                     time.sleep(random_number)
-                    if not self.q.empty() and table.guest is None:
-                        table.guest = self.q.get()
-                        print(f'{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.num}')
-                        random_number = random.randint(1, 2)
-                        time.sleep(random_number)
+                if not self.q.empty() and table.guest is None:
+                    table.guest = self.q.get()
+                    table.guest.start()
+                    print(f'{table.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {table.num}')
+                    random_number = random.randint(1, 2)
+                    time.sleep(random_number)
 
 
 tables = [Table(number) for number in range(1, 6)]
